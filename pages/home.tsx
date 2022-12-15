@@ -14,6 +14,8 @@ interface challenge{
   solution:string
 }
 
+const dynamic2:any =dynamic
+
 const date_1 = new Date('12/14/2022');
 const date_2 = new Date();
   
@@ -24,7 +26,7 @@ const date_2 = new Date();
   }
 const challenge:challenge = data[days(date_1,date_2)]
 
-const CodeEditor = dynamic(
+const CodeEditor = dynamic2(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
   { ssr: false }
 );
@@ -56,7 +58,7 @@ function home() {
               value={skeleton}
               language="js"
               placeholder="Please enter JS code."
-              onChange={(evn) => setSkeleton(evn.target.value)}
+              onChange={(evn:any) => setSkeleton(evn.target.value)}
               padding={12}
               style={{
                 fontSize: 14,
@@ -95,7 +97,7 @@ function home() {
                   value={solution}
                   language="js"
                   placeholder="Please enter JS code."
-                  onChange={(evn) => setSkeleton(evn.target.value)}
+                  onChange={(evn:any) => setSkeleton(evn.target.value)}
                   padding={12}
                   style={{
                     fontSize: 14,
