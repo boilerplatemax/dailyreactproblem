@@ -1,7 +1,6 @@
 .root {
-  @apply sticky top-0 bg-black z-40 transition-all duration-150;
+  @apply  bg-transparent z-40 transition-all duration-150;
 }
-
 .link {
   @apply inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-zinc-200 rounded-md p-1;
 }
@@ -11,7 +10,7 @@
 }
 
 .link:focus {
-  @apply outline-none text-zinc-100 ring-2 ring-pink-500 ring-opacity-50;
+  @apply outline-none text-zinc-100 ring-2 ring-yellow-200 ring-opacity-50;
 }
 
 .logo {

@@ -24,7 +24,7 @@ function Card({ title, description, footer, children }: Props) {
         <p className="text-zinc-300">{description}</p>
         {children}
       </div>
-      <div className="border-t border-zinc-700 bg-zinc-900 p-4 text-zinc-500 rounded-b-md">
+      <div className="border-t border-zinc-700 bg-indigo-900 p-4 text-zinc-500 rounded-b-md">
         {footer}
       </div>
     </div>
@@ -59,15 +59,17 @@ export default function Account({ user }: { user: User }) {
     }).format((subscription?.prices?.unit_amount || 0) / 100);
 
   return (
-    <section className="bg-black mb-32">
+    <section className="mb-32">
       <div className="max-w-6xl mx-auto pt-8 sm:pt-24 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:flex-col sm:align-center">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
             Account
           </h1>
-          <p className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
-            We partnered with Stripe for a simplified billing.
+          <p className="text-xl mt-8 mb-4 font-semibold sm:text-center text-zinc-200">
+            {user ? `Signed in as ${user.email}` : undefined}
           </p>
+
+          
         </div>
       </div>
       <div className="p-4">
@@ -83,13 +85,14 @@ export default function Account({ user }: { user: User }) {
               <p className="pb-4 sm:pb-0">
                 Manage your subscription on Stripe.
               </p>
+              
               <Button
                 variant="slim"
                 loading={loading}
                 disabled={loading || !subscription}
                 onClick={redirectToCustomerPortal}
               >
-                Open customer portal
+                Manage my subscription
               </Button>
             </div>
           }
@@ -108,33 +111,7 @@ export default function Account({ user }: { user: User }) {
             )}
           </div>
         </Card>
-        <Card
-          title="Your Name"
-          description="Please enter your full name, or a display name you are comfortable with."
-          footer={<p>Please use 64 characters at maximum.</p>}
-        >
-          <div className="text-xl mt-8 mb-4 font-semibold">
-            {userDetails ? (
-              `${
-                userDetails.full_name ??
-                `${userDetails.first_name} ${userDetails.last_name}`
-              }`
-            ) : (
-              <div className="h-8 mb-6">
-                <LoadingDots />
-              </div>
-            )}
-          </div>
-        </Card>
-        <Card
-          title="Your Email"
-          description="Please enter the email address you want to use to login."
-          footer={<p>We will email you to verify the change.</p>}
-        >
-          <p className="text-xl mt-8 mb-4 font-semibold">
-            {user ? user.email : undefined}
-          </p>
-        </Card>
+
       </div>
     </section>
   );
