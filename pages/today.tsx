@@ -14,10 +14,11 @@ interface challenge{
   explanation:string,
   solution:string
 }
-const currentDate=useDate()
-const challenge: challenge = data[currentDate];
+
 
 function today() {
+  const currentDate=useDate()
+const challenge: challenge = data[currentDate];
     const router=useRouter()
     
     const [reveal, setReveal] = useState(false);
