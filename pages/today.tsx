@@ -18,7 +18,7 @@ interface challenge{
 
 const today=() =>{
   const currentDate=useDate()
-const challenge: challenge = data[currentDate];
+  const challenge: challenge = data[currentDate];
     const router=useRouter()
     
     const [reveal, setReveal] = useState(false);
@@ -37,9 +37,9 @@ const challenge: challenge = data[currentDate];
     }, [reveal,'']);
     
   
-  if(!challenge){
-    router.reload()
-  }
+  // if(!challenge){
+  //   router.reload()
+  // }
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
