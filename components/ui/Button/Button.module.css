@@ -3,7 +3,7 @@
 }
 
 .root:hover {
-  @apply bg-indigo-800 text-white border border-white;
+  @apply bg-blue-800 text-white border border-white;
 }
 
 .root:focus {

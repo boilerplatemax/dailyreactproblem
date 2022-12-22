@@ -22,13 +22,12 @@ const SignIn = () => {
       <div className="flex justify-center height-screen-helper">
         <div className="flex flex-col justify-between max-w-lg p-12 m-auto w-96  bg-zinc-100 rounded-xl">
           <div className="flex justify-center pb-12">
-            <Logo width="64px" height="64px" />
+            <h1 className='text-zinc-900 font-semibold'>ReactTeacher</h1>
           </div>
           <div className="flex flex-col space-y-4">
             <Auth
-              
               supabaseClient={supabaseClient}
-              providers={['github','google']}
+              providers={['github', 'google']}
               redirectTo={getURL()}
               magicLink={true}
               appearance={{

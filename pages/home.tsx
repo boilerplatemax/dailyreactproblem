@@ -1,196 +1,108 @@
-import React,{useState} from "react";
-import dynamic from "next/dynamic";
-import Button from "@/components/ui/Button";
+import React from 'react'
 import Link from 'next/link';
-import { useUser } from 'utils/useUser';
-import "@uiw/react-textarea-code-editor/dist.css";
-import data from '../assets/data/data.json'
+import Image from 'next/image'
+import home1 from 'assets/images/homegif2.gif'
 
-interface challenge{
-  prompt:string,
-  skeleton:string,
-  tipsFree:string,
-  explanation:string,
-  solution:string
-}
+import testimonial1 from 'assets/images/boy.png'
+import testimonial2 from 'assets/images/woman.png'
+import testimonial3 from 'assets/images/man.png'
 
-const dynamic2:any =dynamic
+type Props = {}
 
-const date_1 = new Date('12/14/2022');
-const date_2 = new Date();
-  
-  const days = (date_1:any, date_2:any) =>{
-      let difference = date_2.getTime()-date_1.getTime();
-      let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-      return TotalDays-1;
-  }
-const challenge:challenge = data[days(date_1,date_2)]
-
-const CodeEditor = dynamic2(
-  () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
-  { ssr: false }
-);
-
-function home() {
-
-  const { user, isLoading, subscription } = useUser();
-
-  const [reveal,setReveal]=useState(false)
-
-  const [skeleton, setSkeleton] = useState(
-    challenge?.skeleton
-  );
-  const [solution, setSolution] = useState(
-    challenge?.solution
-  );
+const home = (props: Props) => {
   return (
-    <div className='2xl:px-48 py-3 px-4 min-h-screen'>
-      <div className='grid xl:grid-cols-3 grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]'>
-        
-        <div className='col-span-1 xl:col-span-2'>
-        <h1 className='text-5xl font-extrabold text-white py-3'>Today's puzzle</h1>
-          <p className='text-md py-3'>
-          {challenge?.prompt}
-          </p>
-          <h1 className='text-5xl font-extrabold text-white py-3'>Start with this</h1>
-          <div className=' py-3'>
-            <CodeEditor
-              value={skeleton}
-              language="js"
-              placeholder="Please enter JS code."
-              onChange={(evn:any) => setSkeleton(evn.target.value)}
-              padding={12}
-              style={{
-                fontSize: 14,
-                backgroundColor: "#1e1e1e",
-                borderRadius:'12px',
-                color:'white',
-                fontFamily:
-                  "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
-              }}
-            />
+    <div className="2xl:px-48 py-3 px-4 min-h-screen">
+    <div className="bg-transparent py-12 px-4">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full lg:w-2/4 px-4 mb-8 lg:mb-0">
+            <h1 className="text-5xl font-bold text-white mb-5">Welcome to React Teacher!</h1>
+            <p className="text-lg leading-relaxed text-white mb-8">
+            We believe that the best way to learn is by doing, and our questions provide an opportunity for you to apply your knowledge and see immediate results. Each day, you'll receive a new question to solve, allowing you to consistently challenge and improve your skills.
+            
+            </p>
+            <div className="mx-auto max-w-md float-left">
+              <Link href='/today'>
+          <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-amber-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-8">
+            Today's Challenge
+          </button>
+          </Link>
+        </div>
           </div>
-          <h1 className='text-5xl font-extrabold text-white py-3'>Tips</h1>
-          <p className='text-md py-3'>
-          {challenge?.tipsFree}
-          </p>
-            <div>
-            <Button
-                variant="slim"
-                type="button"
-                onClick={()=>setReveal(r=>!r)}
-                className={`mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900 w-96 ${!reveal&&'hover:animate-[wiggle_.25s_ease-in-out_infinite]'}`}
-              >
-                {reveal?'Hide Solution':'Reveal Solution'}
-              </Button>
-              {/* solution */}
-              <div className='mb-8'>
-                {reveal&&
-                <>
-                {/* change true to subscription to start chargin for service */}
-                {true?
-                <div className='py-12'>
-                  <h1 className='text-5xl font-extrabold text-white py-3'>Explanation</h1>
-                  <p className='text-md py-3'>{challenge.explanation}</p>
-                  <div className='py-12'>
-                <CodeEditor
-                  value={solution}
-                  language="js"
-                  placeholder="Please enter JS code."
-                  onChange={(evn:any) => setSkeleton(evn.target.value)}
-                  padding={12}
-                  style={{
-                    fontSize: 14,
-                    backgroundColor: "#1e1e1e",
-                    borderRadius:'12px',
-                    color:'white',
-                    fontFamily:
-                      "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
-                  }}
-                />
-                </div>
-                </div>
-                :
-                <div className='mt-8'>
-                 
-                  
-            <div className='col-span-1  max-w-lg'>
-            <h2 className='text-5xl font-extrabold'>Ready to Become a React Master?</h2>
-            <p className='py-3'>Sign up for premium to view solutions.</p>
-            <div
-                className=
-                  'rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500'
-              >
-                <div className="p-6">
-                  <h2 className="text-2xl leading-6 font-semibold text-white">
-                  Want to improve your react skills?
-                  </h2>
-                  <p className="mt-4 text-zinc-300">Get a subscription for cheaper than a cup of coffee!</p>
-                  <p className="mt-8">
-                    <span className="text-5xl font-extrabold white">
-                      $1.99
-                    </span>
-                    <span className="text-base font-medium text-zinc-100">
-                      /month
-                    </span>
-                  </p>
-                  <Link href='/plans'>
-                    <Button
-                      variant="slim"
-                      type="button"
-                      className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
-                    >
-                        Get the solution
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+          
+          <div className="w-full lg:w-1/4 px-4">
+            <Image src={home1} alt="Description of image" className="w-full h-auto rounded-lg shadow-lg" width="250" height="250"/>
 
+          </div>
+          {/* <div className="w-full lg:w-1/4 px-4">
+            <div className='grid grid-cols bg-white rounded-full h-full'>hi</div>
+          </div> */}
         </div>
-                  </div>
-                }
-              </>
-                
-                }
-                
-              </div>
-            </div>
-        </div>
-        {/* {!subscription&&<div className='col-span-1'>
-            <h2 className='text-5xl font-extrabold py-3'>Become a React Master</h2>
-            <div
-                className=
-                  'rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500'
-              >
-                <div className="p-6">
-                  <h2 className="text-2xl leading-6 font-semibold text-white">
-                  Want to improve your react skills?
-                  </h2>
-                  <p className="mt-4 text-zinc-300">Get a subscription for cheaper than a cup of coffee!</p>
-                  <p className="mt-8">
-                    <span className="text-5xl font-extrabold white">
-                      $1.99
-                    </span>
-                    <span className="text-base font-medium text-zinc-100">
-                      /month
-                    </span>
-                  </p>
-                  <Link href='/plans'>
-                    <Button
-                      variant="slim"
-                      type="button"
-                      className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
-                    >
-                        Get the solution
-                    </Button>
-                  </Link>
-                </div>
-              </div>
 
-        </div>} */}
       </div>
     </div>
-  );
-}
+    <div className="bg-transparent py-12 px-4">
+      <div className="lg:flex flex-row lg:flex-row-reverse">
+        <div className="lg:w-1/2">
+          {/* <Image src={home1} alt="My Image" className="w-full h-auto" /> */}
+        </div>
+        <div className="lg:w-1/2 pl-4">
+          <h2 className="text-2xl font-bold">Don't just take our word for it...</h2>
+          <p className="text-white text-lg">Try it out for yourself for free and see the benefits of daily practice. Subscribe to our service to start learning and improving today by getting detailed explanations and solutions.</p>
+        </div>
+      </div>
+    </div>
+    <div className="bg-transparent py-12 px-4">
+      <h1 className="text-2xl font-bold text-center text-white mb-8">Testimonials</h1>
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full md:w-1/3 px-4 mb-8">
+            <div className="bg-white rounded-lg shadow-lg p-4">
+            <h2 className="text-gray-600 text-lg leading-relaxed mb-2 font-bold">A Lifesaver for University Students</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-4">
+              I really struggled with understanding React at first, but your daily question website really helped me improve my skills. The variety of questions and explanations provided solidified my understanding of the concepts and allowed me to confidently apply them in my projects.
+              </p>
+              <div className="flex items-center">
+                <Image src={testimonial1} alt="Avatar" className="w-12 h-12 rounded-full mr-4" width="50" height="50"/>
+                <div className="text-gray-800 font-bold text-sm">
+                Ethan Park
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/3 px-4 mb-8">
+            <div className="bg-white rounded-lg shadow-lg p-4">
+            <h2 className="text-gray-600 text-lg leading-relaxed mb-2 font-bold">The Perfect Resource for Career Switchers</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-4">
+              Your daily React question website was an invaluable resource as I transitioned into a career in web development. The concise, clear explanations helped me grasp the concepts quickly and efficiently, and I am now confident in my React skills.
+              </p>
+              <div className="flex items-center">
+                <Image src={testimonial2} alt="Avatar" className="w-12 h-12 rounded-full mr-4" width="50" height="50"/>
+                <div className="text-gray-800 font-bold text-sm">
+                Zara Patel
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/3 px-4 mb-8">
+            <div className="bg-white rounded-lg shadow-lg p-4">
+              <h2 className="text-gray-600 text-lg leading-relaxed mb-2 font-bold">A Must-Have for Seasoned Web Developers</h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-4">
+              Your daily React question website has been a great resource for me to refresh my knowledge and keep my skills sharp. The questions and explanations provided are always relevant and well-explained, making it easy for me to learn and improve. I highly recommend this resource to any web developer looking to stay on top of their game.
+              </p>
+              <div className="flex items-center">
+                <Image src={testimonial3} alt="Avatar" className="w-12 h-12 rounded-full mr-4" width="50" height="50"/>
+                <div className="text-gray-800 font-bold text-sm">
+                James Rodriguez
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+</div>
 
-export default home;
+    </div>
+  )
+}
+export default home

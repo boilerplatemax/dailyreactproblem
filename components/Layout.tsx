@@ -27,7 +27,10 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="robots" content="follow, index" />
         <link href="/favicon.ico" rel="shortcut icon" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://subscription-starter.vercel.app${router.asPath}`} />
+        <meta
+          property="og:url"
+          content={`https://subscription-starter.vercel.app${router.asPath}`}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={meta.title} />
         <meta property="og:description" content={meta.description} />
@@ -38,10 +41,34 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
+
+        <script
+          async
+          src="https://cpwebassets.codepen.io/assets/embed/ei.js"
+        ></script>
       </Head>
       <Navbar />
-      <main id="skip" className='bg-transparent'>{children}</main>
+      <main id="skip" className="bg-transparent">
+        {children}
+      </main>
       <Footer />
     </>
   );
+}
+{
+  /* <CodeEditor
+                  value={solution}
+                  language="js"
+                  placeholder="Please enter JS code."
+                  onChange={(evn:any) => setSkeleton(evn.target.value)}
+                  padding={12}
+                  style={{
+                    fontSize: 14,
+                    backgroundColor: "#1e1e1e",
+                    borderRadius:'12px',
+                    color:'white',
+                    fontFamily:
+                      "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace"
+                  }}
+                /> */
 }

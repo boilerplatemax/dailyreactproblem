@@ -25,12 +25,20 @@ const Navbar = () => {
               </a>
             </Link>
             <nav className="space-x-2 ml-6 hidden lg:block">
+            <Link href="/today">
+                <a className={s.link}>Today's Challenge</a>
+              </Link>
+              <Link href="/solve">
+                <a className={s.link}>Archives</a>
+              </Link>
               <Link href="/plans">
                 <a className={s.link}>Pricing</a>
               </Link>
-              {user&&<Link href="/account">
-                <a className={s.link}>Account</a>
-              </Link>}
+              {user && (
+                <Link href="/account">
+                  <a className={s.link}>Account</a>
+                </Link>
+              )}
             </nav>
           </div>
 

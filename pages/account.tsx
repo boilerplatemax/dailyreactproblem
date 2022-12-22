@@ -18,13 +18,13 @@ interface Props {
 
 function Card({ title, description, footer, children }: Props) {
   return (
-    <div className="border border-zinc-700	max-w-3xl w-full p rounded-md m-auto my-8">
+    <div className="border border-sky-200	max-w-3xl w-full p rounded-md m-auto my-8 bg-blue-900">
       <div className="px-5 py-4">
         <h3 className="text-2xl mb-1 font-medium">{title}</h3>
         <p className="text-zinc-300">{description}</p>
         {children}
       </div>
-      <div className="border-t border-zinc-700 bg-indigo-900 p-4 text-zinc-500 rounded-b-md">
+      <div className="border-t border-sky-200 bg-blue-900 p-4 text-sky-200 rounded-b-md">
         {footer}
       </div>
     </div>
@@ -68,13 +68,12 @@ export default function Account({ user }: { user: User }) {
           <p className="text-xl mt-8 mb-4 font-semibold sm:text-center text-zinc-200">
             {user ? `Signed in as ${user.email}` : undefined}
           </p>
-
-          
         </div>
       </div>
       <div className="p-4">
         <Card
           title="Your Plan"
+          
           description={
             subscription
               ? `You are currently on the ${subscription?.prices?.products?.name} plan.`
@@ -82,10 +81,10 @@ export default function Account({ user }: { user: User }) {
           }
           footer={
             <div className="flex items-start justify-between flex-col sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">
+              <p className="pb-4 sm:pb-0 text-white">
                 Manage your subscription on Stripe.
               </p>
-              
+
               <Button
                 variant="slim"
                 loading={loading}
@@ -111,7 +110,6 @@ export default function Account({ user }: { user: User }) {
             )}
           </div>
         </Card>
-
       </div>
     </section>
   );
