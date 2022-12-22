@@ -22,7 +22,7 @@ const home = (props: Props) => {
             
             </p>
             <div className="mx-auto max-w-md float-left">
-              <Link href='/today'>
+              <Link href="/today">
           <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-amber-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-8">
             Today's Challenge
           </button>
