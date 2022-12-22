@@ -142,7 +142,7 @@ function today() {
                                 Get a Free Trial (No Card Required)
                               </span>
                             </p>
-                            <Link href="/plans">
+                            <Link href={{ pathname: `/today` }}>
                               <Button
                                 variant="slim"
                                 type="button"
