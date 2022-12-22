@@ -16,7 +16,7 @@ interface challenge{
 }
 
 
-function today() {
+const today=() =>{
   const currentDate=useDate()
 const challenge: challenge = data[currentDate];
     const router=useRouter()
