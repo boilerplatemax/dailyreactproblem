@@ -1,5 +1,5 @@
 export const useDate = () => {
-    const date_1 = new Date('12/15/2022');
+    const date_1 = new Date('12/23/2022');
     const date_2 = new Date();
     
     const days = (date_1: any, date_2: any) => {

@@ -66,7 +66,7 @@ if(!subscription&&currentDate-5>id){
                                 No Card Required
                               </span>
                             </p>
-                            <Link href="/plans">
+                            <Link href={{ pathname: `/plans` }}>
                               <Button
                                 variant="slim"
                                 type="button"
@@ -183,7 +183,7 @@ if(!subscription&&currentDate-5>id){
                               </span>
 
                             </p>
-                            <Link href="/plans">
+                            <Link href={{ pathname: `/plans` }}>
                               <Button
                                 variant="slim"
                                 type="button"

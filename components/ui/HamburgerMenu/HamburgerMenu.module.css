@@ -1,4 +1,4 @@
-.root {
+/* .root {
   @apply bg-transparent z-40 transition-all duration-150;
 }
 .link {
@@ -14,6 +14,5 @@
 }
 
 .logo {
-  @apply cursor-pointer rounded-full transform duration-100 ease-in-out inline-flex align-bottom;
-}
-
+  @apply cursor-pointer rounded-full transform duration-100 ease-in-out;
+} */

@@ -30,16 +30,12 @@ const today=() =>{
         script.async = true;
         document.body.appendChild(script);
         setLoaded(true)
-        
+        if(!challenge)router.reload()
         return () => {
         document.body.removeChild(script);
         };
     }, [reveal,'']);
-    
-  
-  // if(!challenge){
-  //   router.reload()
-  // }
+
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
