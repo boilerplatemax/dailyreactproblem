@@ -236,4 +236,5 @@ The component also has a div element with the class name "qr-holder". If the qrU
     </div>
   );
 };
-export default home;
+
+export default home
