@@ -1,11 +1,8 @@
 import Link from 'next/link';
-import s from './Navbar.module.css';
 
 import Logo from 'components/icons/Logo';
-import { useRouter } from 'next/router';
 import { useUser } from 'utils/useUser';
 
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const HamburgerMenu = ({ isOpen, onClick }:any) => {
   const user = useUser()
