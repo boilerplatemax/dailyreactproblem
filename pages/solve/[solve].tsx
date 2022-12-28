@@ -66,9 +66,9 @@ function solve() {
               <span className="text-3xl font-extrabold white">
                 Get a Free Trial
               </span>
-              <span className="text-base font-medium text-zinc-100 block">
+              {/* <span className="text-base font-medium text-zinc-100 block">
                 First 7 days free!
-              </span>
+              </span> */}
             </p>
             <Link href={{ pathname: `/plans` }}>
               <Button
