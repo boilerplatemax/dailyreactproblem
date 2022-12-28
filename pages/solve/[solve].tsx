@@ -8,11 +8,13 @@ import data from 'assets/data/data.json';
 
 interface challenge {
   title: string;
+  emoji:string;
   prompt: string;
   skeleton: string;
   tipsFree: string;
   explanation: string;
   solution: string;
+  difficulty:number;
 }
 
 function solve() {
@@ -87,7 +89,7 @@ function solve() {
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
         <div className="">
           <h1 className="text-3xl font-light text-white py-3">
-            Puzzle #{parseInt(id) + 1}: {challenge?.title}
+            Puzzle #{parseInt(id) + 1}: {challenge?.title} {challenge?.emoji}
           </h1>
           <p className="text-md py-3">{challenge?.prompt}</p>
           <h1 className="text-3xl font-light text-white py-3">

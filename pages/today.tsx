@@ -8,11 +8,14 @@ import '@uiw/react-textarea-code-editor/dist.css';
 import data from '../assets/data/data.json';
 
 interface challenge {
+  title:string;
+  emoji:string;
   prompt: string;
   skeleton: string;
   tipsFree: string;
   explanation: string;
   solution: string;
+  difficulty: number;
 }
 
 const today = () => {
@@ -40,7 +43,7 @@ const today = () => {
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
         <div className="">
           <h1 className="text-3xl font-light text-white py-3">
-            Today's puzzle
+            Today's Challenge: {challenge?.title} {challenge?.emoji}
           </h1>
           <p className="text-md py-3">{challenge?.prompt}</p>
           <h1 className="text-3xl font-light text-white py-3">
@@ -65,7 +68,7 @@ const today = () => {
                     React Function Component Examples
                   </a>{' '}
                   by CodePen (
-                  <a href="https://codepen.io/team/reactteacher">@codepen</a>)
+                  <a href={`https://codepen.io/reactteacher/pen/${challenge?.skeleton}`}>@codepen</a>)
                   on <a href="https://codepen.io">CodePen</a>.
                 </span>
               </p>
@@ -148,7 +151,7 @@ const today = () => {
                                 Get a Free Trial (No Card Required)
                               </span>
                             </p>
-                            <Link href={{ pathname: `/today` }}>
+                            <Link href={{ pathname: `/plans` }}>
                               <Button
                                 variant="slim"
                                 type="button"
