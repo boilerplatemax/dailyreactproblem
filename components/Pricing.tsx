@@ -109,7 +109,7 @@ export default function Pricing({ products }: Props) {
             </button>
           </div>
         </div>
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex justify-center">
+        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 flex justify-center ">
           {products.map((product) => {
             const price = product?.prices?.find(
               (price) => price.interval === billingInterval
@@ -124,7 +124,7 @@ export default function Pricing({ products }: Props) {
               <div
                 key={product.id}
                 className={cn(
-                  'rounded-lg shadow-sm divide-y divide-zinc-600 bg-blue-900',
+                  'rounded-lg shadow-sm divide-y divide-zinc-600 bg-blue-900 max-w-xl',
                   {
                     'border border-pink-500': subscription
                       ? product.name === subscription?.prices?.products?.name
