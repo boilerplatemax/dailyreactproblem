@@ -57,8 +57,12 @@ a {
   @apply bg-violet-900
 } */
 .archive-list li {
-  @apply text-zinc-400
+  @apply text-zinc-400;
 }
-.archive-list li:nth-last-child(1),.archive-list li:nth-last-child(2),.archive-list li:nth-last-child(3),.archive-list li:nth-last-child(4),.archive-list li:nth-last-child(5) {
-  @apply text-white
+.archive-list li:nth-last-child(1),
+.archive-list li:nth-last-child(2),
+.archive-list li:nth-last-child(3),
+.archive-list li:nth-last-child(4),
+.archive-list li:nth-last-child(5) {
+  @apply text-white;
 }

@@ -73,7 +73,6 @@ export default function Account({ user }: { user: User }) {
       <div className="p-4">
         <Card
           title="Your Plan"
-          
           description={
             subscription
               ? `You are currently on the ${subscription?.prices?.products?.name} plan.`

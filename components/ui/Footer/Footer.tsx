@@ -80,7 +80,6 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-
       </div>
       <div className="py-12 flex flex-col md:flex-row justify-between items-center space-y-4 bg-blue-900">
         <div>

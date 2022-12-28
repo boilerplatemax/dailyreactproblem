@@ -16,4 +16,3 @@
 .logo {
   @apply cursor-pointer rounded-full transform duration-100 ease-in-out inline-flex align-bottom;
 }
-

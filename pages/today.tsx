@@ -1,40 +1,39 @@
-import React,{useState, useEffect} from "react";
-import { useRouter } from 'next/router'
-import Button from "@/components/ui/Button";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
-import "@uiw/react-textarea-code-editor/dist.css";
-import data from '../assets/data/data.json'
+import '@uiw/react-textarea-code-editor/dist.css';
+import data from '../assets/data/data.json';
 
-interface challenge{
-  prompt:string,
-  skeleton:string,
-  tipsFree:string,
-  explanation:string,
-  solution:string
+interface challenge {
+  prompt: string;
+  skeleton: string;
+  tipsFree: string;
+  explanation: string;
+  solution: string;
 }
 
-
-const today=() =>{
-  const currentDate=useDate()
+const today = () => {
+  const currentDate = useDate();
   const challenge: challenge = data[currentDate];
-    const router=useRouter()
-    
-    const [reveal, setReveal] = useState(false);
-    const [loaded, setLoaded]=useState(false)
-    const { user, isLoading, subscription } = useUser();
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://cpwebassets.codepen.io/assets/embed/ei.js';
-        script.async = true;
-        document.body.appendChild(script);
-        setLoaded(true)
-        if(!challenge)router.reload()
-        return () => {
-        document.body.removeChild(script);
-        };
-    }, [reveal,'']);
+  const router = useRouter();
+
+  const [reveal, setReveal] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const { user, isLoading, subscription } = useUser();
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cpwebassets.codepen.io/assets/embed/ei.js';
+    script.async = true;
+    document.body.appendChild(script);
+    setLoaded(true);
+    if (!challenge) router.reload();
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [reveal, '']);
 
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
@@ -49,24 +48,28 @@ const today=() =>{
           </h1>
           <div className="py-3">
             {/* this one is nice */}
-            {<p
-              className="codepen"
-              data-height="600"
-              data-default-tab="js,result"
-              data-slug-hash={challenge?.skeleton}
-              data-editable="true"
-              data-user="codepen"
-            >
-              <span>
-                See the Pen{' '}
-                <a href={`https://codepen.io/reactteacher/pen/${challenge?.skeleton}`}>
-                  React Function Component Examples
-                </a>{' '}
-                by CodePen (
-                <a href="https://codepen.io/team/reactteacher">@codepen</a>) on{' '}
-                <a href="https://codepen.io">CodePen</a>.
-              </span>
-            </p>}
+            {
+              <p
+                className="codepen"
+                data-height="600"
+                data-default-tab="js,result"
+                data-slug-hash={challenge?.skeleton}
+                data-editable="true"
+                data-user="codepen"
+              >
+                <span>
+                  See the Pen{' '}
+                  <a
+                    href={`https://codepen.io/reactteacher/pen/${challenge?.skeleton}`}
+                  >
+                    React Function Component Examples
+                  </a>{' '}
+                  by CodePen (
+                  <a href="https://codepen.io/team/reactteacher">@codepen</a>)
+                  on <a href="https://codepen.io">CodePen</a>.
+                </span>
+              </p>
+            }
           </div>
           <h1 className="text-3xl font-light text-white py-3">Tips</h1>
           <p className="text-md py-3">{challenge?.tipsFree}</p>
@@ -92,26 +95,32 @@ const today=() =>{
                         Explanation
                       </h1>
                       <p className="text-md py-3">{challenge?.explanation}</p>
-                      
+
                       <div className="py-12">
-                      {<p
-                        className="codepen"
-                        data-height="600"
-                        data-default-tab="js,result"
-                        data-slug-hash={challenge?.solution}
-                        data-editable="true"
-                        data-user="codepen"
-                        >
-                        <span>
-                            See the Pen{' '}
-                            <a href={`https://codepen.io/team/codepen/pen/${challenge?.solution}`}>
-                            React Function Component Examples
-                            </a>{' '}
-                            by CodePen (
-                            <a href="https://codepen.io/team/codepen">@codepen</a>) on{' '}
-                            <a href="https://codepen.io">CodePen</a>.
-                        </span>
-                        </p>}
+                        {
+                          <p
+                            className="codepen"
+                            data-height="600"
+                            data-default-tab="js,result"
+                            data-slug-hash={challenge?.solution}
+                            data-editable="true"
+                            data-user="codepen"
+                          >
+                            <span>
+                              See the Pen{' '}
+                              <a
+                                href={`https://codepen.io/team/codepen/pen/${challenge?.solution}`}
+                              >
+                                React Function Component Examples
+                              </a>{' '}
+                              by CodePen (
+                              <a href="https://codepen.io/team/codepen">
+                                @codepen
+                              </a>
+                              ) on <a href="https://codepen.io">CodePen</a>.
+                            </span>
+                          </p>
+                        }
                       </div>
                     </div>
                   ) : (
@@ -135,7 +144,7 @@ const today=() =>{
                               <li>View all previous challenges</li>
                             </ul>
                             <p className="mt-8">
-                            <span className="md:text-2xl text-xl font-medium white">
+                              <span className="md:text-2xl text-xl font-medium white">
                                 Get a Free Trial (No Card Required)
                               </span>
                             </p>
@@ -161,6 +170,6 @@ const today=() =>{
       </div>
     </div>
   );
-}
+};
 
 export default today;

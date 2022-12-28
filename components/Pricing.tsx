@@ -74,7 +74,8 @@ export default function Pricing({ products }: Props) {
             Pricing Plans
           </h1>
           <p className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
-            Start learning for free and upgrade for solutions and explanations to problems.
+            Start learning for free and upgrade for solutions and explanations
+            to problems.
           </p>
           <div className="relative self-center mt-6 bg-blue-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
             <button
@@ -97,7 +98,11 @@ export default function Pricing({ products }: Props) {
                   : 'ml-0.5 relative w-1/2 border border-transparent text-blue-200'
               } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
             >
-              <div className={`absolute -top-8 -right-3 bg-orange-500 p-2 animate-[wiggle_.25s_ease-in-out_infinite] rounded-2xl ${billingInterval==='year'?'hidden':'text-white'}`}>
+              <div
+                className={`absolute -top-8 -right-3 bg-orange-500 p-2 animate-[wiggle_.25s_ease-in-out_infinite] rounded-2xl ${
+                  billingInterval === 'year' ? 'hidden' : 'text-white'
+                }`}
+              >
                 Best Value!
               </div>
               Yearly billing

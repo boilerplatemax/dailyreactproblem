@@ -20,8 +20,7 @@ module.exports = {
         },
         menuSlideIn: {
           '0%': {
-            transform: 'translateX(-100%)',
-
+            transform: 'translateX(-100%)'
           },
           '100%': {
             transform: 'translateX(0)'
@@ -29,12 +28,10 @@ module.exports = {
         },
         menuSlideOut: {
           '0%': {
-            transform: 'translateX(0)',
-
+            transform: 'translateX(0)'
           },
           '100%': {
-            transform: 'translateX(-100%)',
-            
+            transform: 'translateX(-100%)'
           }
         },
         animation: {
@@ -42,7 +39,7 @@ module.exports = {
           fadeIn: 'fadeIn 1s ease-in-out',
           delay: 'delay 1s ease-in-out',
           menuSlideIn: 'menuSlideIn 1s linear',
-          menuSlideOut: 'menuSlideOut 1s linear',
+          menuSlideOut: 'menuSlideOut 1s linear'
         }
       }
     }
