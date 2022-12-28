@@ -28,7 +28,7 @@ const SignIn = () => {
             <Auth
               supabaseClient={supabaseClient}
               providers={['github', 'google']}
-              redirectTo={getURL()}
+              redirectTo={`https://www.reactteacher.com/`}
               magicLink={true}
               appearance={{
                 theme: ThemeSupa,
