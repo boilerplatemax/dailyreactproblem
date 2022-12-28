@@ -67,7 +67,7 @@ function solve() {
                 Get a Free Trial
               </span>
               <span className="text-base font-medium text-zinc-100 block">
-                No Card Required
+                First 7 days free
               </span>
             </p>
             <Link href={{ pathname: `/plans` }}>
