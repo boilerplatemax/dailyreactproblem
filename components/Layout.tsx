@@ -42,6 +42,19 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEB110MWLK" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-NEB110MWLK');
+            `,
+          }}
+        />
+
         <script
           async
           src="https://cpwebassets.codepen.io/assets/embed/ei.js"
