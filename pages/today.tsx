@@ -4,12 +4,13 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
+import { usePayWall } from 'utils/usePayWall';
 import '@uiw/react-textarea-code-editor/dist.css';
 import data from '../assets/data/data.json';
 
 interface challenge {
-  title:string;
-  emoji:string;
+  title: string;
+  emoji: string;
   prompt: string;
   skeleton: string;
   tipsFree: string;
@@ -20,6 +21,7 @@ interface challenge {
 
 const today = () => {
   const currentDate = useDate();
+  const payWall = usePayWall();
   const challenge: challenge = data[currentDate];
   const router = useRouter();
 
@@ -68,8 +70,12 @@ const today = () => {
                     React Function Component Examples
                   </a>{' '}
                   by CodePen (
-                  <a href={`https://codepen.io/reactteacher/pen/${challenge?.skeleton}`}>@codepen</a>)
-                  on <a href="https://codepen.io">CodePen</a>.
+                  <a
+                    href={`https://codepen.io/reactteacher/pen/${challenge?.skeleton}`}
+                  >
+                    @codepen
+                  </a>
+                  ) on <a href="https://codepen.io">CodePen</a>.
                 </span>
               </p>
             }
@@ -92,7 +98,7 @@ const today = () => {
               {reveal && (
                 <>
                   {/* change true to subscription to start chargin for service */}
-                  {subscription ? (
+                  {(subscription && payWall)||!payWall&&user ? (
                     <div className="py-12">
                       <h1 className="text-3xl font-light text-white py-3">
                         Explanation
@@ -148,10 +154,10 @@ const today = () => {
                             </ul>
                             <p className="mt-8">
                               <span className="md:text-2xl text-xl font-medium white">
-                                Get a Free Trial (No Card Required)
+                                {payWall?'Get a Free Trial (No Card Required)':'Sign Up With Google for Solutions'}
                               </span>
                             </p>
-                            <Link href={{ pathname: `/plans` }}>
+                            <Link href={{ pathname: `${payWall?'/plans':'/signin'}` }}>
                               <Button
                                 variant="slim"
                                 type="button"

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import data from 'assets/data/data.json';
 import { useDate } from '@/utils/useDate';
 import { useUser } from 'utils/useUser';
+import { usePayWall } from 'utils/usePayWall';
 
 type Props = {};
 
@@ -12,6 +13,7 @@ interface challenge {
 
 const solve = (props: Props) => {
   const { user, isLoading, subscription } = useUser();
+  const payWall = usePayWall();
   const currentDate = useDate();
   data.length = currentDate;
   return (
@@ -19,7 +21,9 @@ const solve = (props: Props) => {
       <h2 className="text-2xl py-2 font-light">Past Challenges</h2>
       <hr />
       <ul
-        className={`flex-col-reverse flex ${!subscription && 'archive-list'}`}
+        className={`flex-col-reverse flex ${
+          !subscription && payWall && 'archive-list'
+        }`}
       >
         {data.map((challenge, index) => {
           return (

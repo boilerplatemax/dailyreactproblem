@@ -4,22 +4,24 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
+import { usePayWall } from 'utils/usePayWall';
 import data from 'assets/data/data.json';
 
 interface challenge {
   title: string;
-  emoji:string;
+  emoji: string;
   prompt: string;
   skeleton: string;
   tipsFree: string;
   explanation: string;
   solution: string;
-  difficulty:number;
+  difficulty: number;
 }
 
 function solve() {
   const currentDate = useDate();
   const router = useRouter();
+  const payWall = usePayWall();
   const id: any = router?.query?.solve;
   const challenge: challenge = data[id];
   const [reveal, setReveal] = useState(false);
@@ -45,7 +47,7 @@ function solve() {
       </div>
     );
   }
-  if (!subscription && currentDate - 5 > id) {
+  if (!subscription && payWall && currentDate - 5 > id) {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3 mb-5">
@@ -137,7 +139,7 @@ function solve() {
               {reveal && (
                 <>
                   {/* change true to subscription to start chargin for service */}
-                  {subscription ? (
+                  {(subscription && payWall)||!payWall&&user ? (
                     <div className="py-12">
                       <h1 className="text-3xl font-light text-white py-3">
                         Explanation
@@ -174,12 +176,6 @@ function solve() {
                   ) : (
                     <div className="mt-8">
                       <div className="col-span-1  max-w-lg">
-                        {/* <h2 className="text-3xl font-light">
-                          Ready to Become a React Master?
-                        </h2>
-                        <p className="py-3">
-                          Sign up for premium to view solutions.
-                        </p> */}
                         <div className="rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500">
                           <div className="p-6">
                             <h2 className="md:text-2xl text-xl font-medium white">
@@ -193,10 +189,10 @@ function solve() {
                             </ul>
                             <p className="mt-8">
                               <span className="md:text-2xl text-xl font-medium white">
-                                Get a Free Trial (No Card Required)
+                                {payWall?'Get a Free Trial (No Card Required)':'Sign Up With Google for Solutions'}
                               </span>
                             </p>
-                            <Link href={{ pathname: `/plans` }}>
+                            <Link href={{ pathname: `${payWall?'/plans':'/signin'}` }}>
                               <Button
                                 variant="slim"
                                 type="button"

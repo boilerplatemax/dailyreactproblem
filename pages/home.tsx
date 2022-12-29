@@ -27,16 +27,22 @@ const home = (props: Props) => {
                 receive a new question to solve, allowing you to consistently
                 challenge and improve your skills.
               </p>
+              <div className="text-xl font-bold leading-tight md:text-left">
+                <h2 className="text-sky-300">Improve Your React Skills</h2>
+                <h2 className="text-sky-200">Ace the Technical Interview</h2>
+                <h2 className="text-sky-100">Build professional React projects for your portfolio</h2>
+              </div>
               <div className="mx-auto max-w-md float-left">
                 <Link href="/today">
-                  <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-orange-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-8">
+                  <button className="px-4 lg:mb-8 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-orange-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-8">
                     Today's Challenge
                   </button>
                 </Link>
               </div>
             </div>
-
+            
             <div className="w-full lg:w-1/4 px-4">
+
               <Image
                 src={home1}
                 alt="Description of image"
@@ -49,11 +55,9 @@ const home = (props: Props) => {
             <div className='grid grid-cols bg-white rounded-full h-full'>hi</div>
           </div> */}
           </div>
-        </div>
-      </div>
 
-      <div>
-        <h2 className="text-4xl font-bold text-white mb-5">
+          <div className=''>
+        <h2 className="text-xl font-bold text-white mb-5">
           What you get from us:
         </h2>
         <ul className="mb-8 text-lg font-light text-white">
@@ -108,16 +112,16 @@ The component also has a div element with the class name "qr-holder". If the qrU
         </div>
       </div>
 
-      <div className="bg-transparent py-12">
+      <div className="bg-transparent py-12 px-5">
         <div className="lg:flex flex-row lg:flex-row-reverse">
           <div className="lg:w-1/2">
             {/* <Image src={home1} alt="My Image" className="w-full h-auto" /> */}
           </div>
           <div className="lg:w-1/2">
-            <h2 className="text-4xl font-bold text-white mb-5">
+            <h2 className="text-2xl font-bold text-sky-300 mb-5">
               Elevate Your React Skills
             </h2>
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-xl font-bold">
               Don't just take our word for it...
             </h2>
             <p className="text-white text-lg">
@@ -233,6 +237,11 @@ The component also has a div element with the class name "qr-holder". If the qrU
           </div>
         </div>
       </div>
+
+        </div>
+      </div>
+
+      
     </div>
   );
 };
