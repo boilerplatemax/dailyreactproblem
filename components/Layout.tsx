@@ -42,7 +42,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-NEB110MWLK" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-249613012-1" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -50,7 +50,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
 
-              gtag('config', 'G-NEB110MWLK');
+              gtag('config', 'UA-249613012-1');
             `,
           }}
         />
