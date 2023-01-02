@@ -16,6 +16,7 @@ const solve = (props: Props) => {
   const payWall = usePayWall();
   const currentDate = useDate();
   data.length = currentDate;
+  
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       <h2 className="text-2xl py-2 font-light">Past Challenges</h2>

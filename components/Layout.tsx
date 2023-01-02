@@ -14,8 +14,8 @@ interface Props {
 export default function Layout({ children, meta: pageMeta }: Props) {
   const router = useRouter();
   const meta = {
-    title: 'Next.js Subscription Starter',
-    description: 'Brought to you by Vercel, Stripe, and Supabase.',
+    title: 'React Teacher',
+    description: 'Improve By Solving Daily Coding Puzzles',
     cardImage: '/og.png',
     ...pageMeta
   };
@@ -42,7 +42,10 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-249613012-1" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-249613012-1"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -51,7 +54,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
               gtag('js', new Date());
 
               gtag('config', 'UA-249613012-1');
-            `,
+            `
           }}
         />
 

@@ -39,7 +39,39 @@ const today = () => {
       document.body.removeChild(script);
     };
   }, [reveal, '']);
-
+  if (!user) {
+    return (
+      <div className="2xl:px-48 py-3 px-4 min-h-screen">
+        <div className="grid grid-cols-1 gap-x-12 max-w-lg animate-[fadeIn_1s_ease-in-out]">
+          <div className="p-6 bg-blue-900 rounded-xl">
+            <h2 className="md:text-2xl text-xl font-medium white">
+              Want to improve your react skills?
+            </h2>
+            <ul className="mt-4 text-zinc-300">
+              <li>Make coding a routine</li>
+              <li>Unlock answers to check your work</li>
+              <li>Get in-depth explanations</li>
+              <li>View all previous challenges</li>
+            </ul>
+            <p className="mt-8">
+              <span className="md:text-2xl text-xl font-medium white">
+                Sign Up With Google To View Today's Challenge
+              </span>
+            </p>
+            <Link href={{ pathname: `${payWall ? '/plans' : '/signin'}` }}>
+              <Button
+                variant="slim"
+                type="button"
+                className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
+              >
+                View Today's Challenge
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
@@ -98,7 +130,7 @@ const today = () => {
               {reveal && (
                 <>
                   {/* change true to subscription to start chargin for service */}
-                  {(subscription && payWall)||!payWall&&user ? (
+                  {(subscription && payWall) || (!payWall && user) ? (
                     <div className="py-12">
                       <h1 className="text-3xl font-light text-white py-3">
                         Explanation
@@ -154,10 +186,16 @@ const today = () => {
                             </ul>
                             <p className="mt-8">
                               <span className="md:text-2xl text-xl font-medium white">
-                                {payWall?'Get a Free Trial (No Card Required)':'Sign Up With Google for Solutions'}
+                                {payWall
+                                  ? 'Get a Free Trial (No Card Required)'
+                                  : 'Sign Up With Google for Solutions'}
                               </span>
                             </p>
-                            <Link href={{ pathname: `${payWall?'/plans':'/signin'}` }}>
+                            <Link
+                              href={{
+                                pathname: `${payWall ? '/plans' : '/signin'}`
+                              }}
+                            >
                               <Button
                                 variant="slim"
                                 type="button"
