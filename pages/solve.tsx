@@ -3,7 +3,7 @@ import Link from 'next/link';
 import data from 'assets/data/data.json';
 import { useDate } from '@/utils/useDate';
 import { useUser } from 'utils/useUser';
-import { usePayWall } from 'utils/usePayWall';
+import { usePayWall } from 'utils/useFeature';
 
 type Props = {};
 
@@ -29,7 +29,7 @@ const solve = (props: Props) => {
         {data.map((challenge, index) => {
           return (
             <li className="py-5 p-4 w-full">
-              <Link href={{ pathname: `/solve/${index}` }}>
+              <Link href={{ pathname: `/solve/${index+1}` }}>
                 <a>
                   <div className="flex items-center">
                     <span className="text-xl">Challenge #{index + 1}</span>

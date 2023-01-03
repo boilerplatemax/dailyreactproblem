@@ -4,7 +4,9 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
-import { usePayWall } from 'utils/usePayWall';
+import { addEmail } from 'utils/supabase-client';
+import { usePayWall } from 'utils/useFeature';
+import { useNewsLetter } from 'utils/useFeature';
 import data from 'assets/data/data.json';
 
 interface challenge {
@@ -22,11 +24,17 @@ function solve() {
   const currentDate = useDate();
   const router = useRouter();
   const payWall = usePayWall();
+  const newsLetter = useNewsLetter();
+
   const id: any = router?.query?.solve;
-  const challenge: challenge = data[id];
+  const challenge: challenge = data[id-1];
   const [reveal, setReveal] = useState(false);
   const [loaded, setLoaded] = useState(true);
+  const [emailProvided, setEmailProvided] = useState(false);
   const { user, isLoading, subscription } = useUser();
+  useEffect(()=>{
+    setEmailProvided(localStorage.getItem("REACTTEACHER_EMAIL")!==null?true:false)
+  },[])
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://cpwebassets.codepen.io/assets/embed/ei.js';
@@ -36,9 +44,9 @@ function solve() {
     return () => {
       document.body.removeChild(script);
     };
-  }, [reveal, id, '']);
+  }, [reveal, id, emailProvided,'']);
 
-  if (!challenge) {
+  if (!challenge||id==='0') {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3">
@@ -47,42 +55,56 @@ function solve() {
       </div>
     );
   }
+  const newsLetterSubmitHandler = (e:any) =>{
+    const email = e.target.email.value
 
-  if (!user) {
-    return (
-      <div className="2xl:px-48 py-3 px-4 min-h-screen">
-        <div className="grid grid-cols-1 gap-x-12 max-w-lg animate-[fadeIn_1s_ease-in-out]">
-          <div className="p-6 bg-blue-900 rounded-xl">
-            <h2 className="md:text-2xl text-xl font-medium white">
-              Want to improve your react skills?
-            </h2>
-            <ul className="mt-4 text-zinc-300">
-              <li>Make coding a routine</li>
-              <li>Unlock answers to check your work</li>
-              <li>Get in-depth explanations</li>
-              <li>View all previous challenges</li>
-            </ul>
-            <p className="mt-8">
-              <span className="md:text-2xl text-xl font-medium white">
-                Sign Up With Google To View Challenge #{id}
-              </span>
-            </p>
-            <Link href={{ pathname: `${payWall ? '/plans' : '/signin'}` }}>
-              <Button
-                variant="slim"
-                type="button"
-                className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
-              >
-                View Challenge #{id}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+    e.preventDefault()
+    if(email===undefined||'')return
+
+    setEmailProvided(true)
+    addEmail(email)
+    localStorage.setItem("REACTTEACHER_EMAIL", email)
+    
+    //if user then set their email value
+
+    //if is not user then set localstorage email value and add it to db
+
   }
+  // if (!user) {
+  //   return (
+  //     <div className="2xl:px-48 py-3 px-4 min-h-screen">
+  //       <div className="grid grid-cols-1 gap-x-12 max-w-lg animate-[fadeIn_1s_ease-in-out]">
+  //         <div className="p-6 bg-blue-900 rounded-xl">
+  //           <h2 className="md:text-2xl text-xl font-medium white">
+  //             Want to improve your react skills?
+  //           </h2>
+  //           <ul className="mt-4 text-zinc-300">
+  //             <li>Make coding a routine</li>
+  //             <li>Unlock answers to check your work</li>
+  //             <li>Get in-depth explanations</li>
+  //             <li>View all previous challenges</li>
+  //           </ul>
+  //           <p className="mt-8">
+  //             <span className="md:text-2xl text-xl font-medium white">
+  //               Sign Up With Google To View Challenge #{id}
+  //             </span>
+  //           </p>
+  //           <Link href={{ pathname: `${payWall ? '/plans' : '/signin'}` }}>
+  //             <Button
+  //               variant="slim"
+  //               type="button"
+  //               className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
+  //             >
+  //               View Challenge #{id}
+  //             </Button>
+  //           </Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  if (!subscription && payWall && currentDate - 5 > id) {
+  if (!subscription && payWall && currentDate - 4 > id) {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3 mb-5">
@@ -126,7 +148,7 @@ function solve() {
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
         <div className="">
           <h1 className="text-3xl font-light text-white py-3">
-            Puzzle #{parseInt(id) + 1}: {challenge?.title} {challenge?.emoji}
+            Puzzle #{parseInt(id)}: {challenge?.title} {challenge?.emoji}
           </h1>
           <p className="text-md py-3">{challenge?.prompt}</p>
           <h1 className="text-3xl font-light text-white py-3">
@@ -174,7 +196,7 @@ function solve() {
               {reveal && (
                 <>
                   {/* change true to subscription to start chargin for service */}
-                  {(subscription && payWall) || (!payWall && user) ? (
+                  {(subscription && payWall) || (!payWall && emailProvided) ? (
                     <div className="py-12">
                       <h1 className="text-3xl font-light text-white py-3">
                         Explanation
@@ -212,7 +234,40 @@ function solve() {
                     <div className="mt-8">
                       <div className="col-span-1  max-w-lg">
                         <div className="rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500">
-                          <div className="p-6">
+                          {newsLetter?
+                            <div className="p-6">
+                            <h2 className="text-lg font-medium white">
+                            Subscribe to our React Newsletter to View
+                            </h2>
+
+
+                            <form onSubmit={e=>newsLetterSubmitHandler(e)}>
+                           <div className='flex flex-row gap-x-4'>
+                           <input className="rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue-500 px-5 py-2 my-4 w-full text-black h-12" name="email" type="email" placeholder="Enter your email"/>
+                            
+                           <Button
+                                variant="slim"
+                                type="submit"
+                                className="block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900 mt-4 w-1/3 h-12"
+                              >
+                                View
+                              </Button>
+                            </div> 
+                            <h2 className="text-lg font-medium white">
+                            Why Subscribe?
+                            </h2>
+                            <ul className="mt-4 text-zinc-300">
+                            <li>Unlock answers to check your work</li>
+                              <li>Access to Job Postings</li>
+                              <li>Meet React Developers</li>
+                              <li>Get in-depth explanations</li>
+                              <li>Get React Tips and Tricks</li>
+                              <li>Cancel Anytime</li>
+                            </ul>
+
+                            </form>
+                          </div>:
+                            <div className="p-6">
                             <h2 className="md:text-2xl text-xl font-medium white">
                               Want to Improve Your React Skills?
                             </h2>
@@ -243,6 +298,9 @@ function solve() {
                               </Button>
                             </Link>
                           </div>
+
+                          
+                          }
                         </div>
                       </div>
                     </div>

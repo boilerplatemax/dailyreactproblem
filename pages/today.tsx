@@ -4,10 +4,11 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
-import { usePayWall } from 'utils/usePayWall';
+import { usePayWall } from 'utils/useFeature';
+import { useNewsLetter } from 'utils/useFeature';
 import '@uiw/react-textarea-code-editor/dist.css';
 import data from '../assets/data/data.json';
-
+import { withPageAuth } from '@supabase/auth-helpers-nextjs';
 interface challenge {
   title: string;
   emoji: string;
@@ -17,11 +18,12 @@ interface challenge {
   explanation: string;
   solution: string;
   difficulty: number;
-}
-
+}const currentDate = useDate();
+export const getServerSideProps = withPageAuth({ redirectTo: `https://www.reactteacher.com/solve/${currentDate+1}` });
 const today = () => {
-  const currentDate = useDate();
+  
   const payWall = usePayWall();
+  const newsLetter = useNewsLetter();
   const challenge: challenge = data[currentDate];
   const router = useRouter();
 
@@ -39,39 +41,39 @@ const today = () => {
       document.body.removeChild(script);
     };
   }, [reveal, '']);
-  if (!user) {
-    return (
-      <div className="2xl:px-48 py-3 px-4 min-h-screen">
-        <div className="grid grid-cols-1 gap-x-12 max-w-lg animate-[fadeIn_1s_ease-in-out]">
-          <div className="p-6 bg-blue-900 rounded-xl">
-            <h2 className="md:text-2xl text-xl font-medium white">
-              Want to improve your react skills?
-            </h2>
-            <ul className="mt-4 text-zinc-300">
-              <li>Make coding a routine</li>
-              <li>Unlock answers to check your work</li>
-              <li>Get in-depth explanations</li>
-              <li>View all previous challenges</li>
-            </ul>
-            <p className="mt-8">
-              <span className="md:text-2xl text-xl font-medium white">
-                Sign Up With Google To View Today's Challenge
-              </span>
-            </p>
-            <Link href={{ pathname: `${payWall ? '/plans' : '/signin'}` }}>
-              <Button
-                variant="slim"
-                type="button"
-                className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
-              >
-                View Today's Challenge
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <div className="2xl:px-48 py-3 px-4 min-h-screen">
+  //       <div className="grid grid-cols-1 gap-x-12 max-w-lg animate-[fadeIn_1s_ease-in-out]">
+  //         <div className="p-6 bg-blue-900 rounded-xl">
+  //           <h2 className="md:text-2xl text-xl font-medium white">
+  //             Want to improve your react skills?
+  //           </h2>
+  //           <ul className="mt-4 text-zinc-300">
+  //             <li>Make coding a routine</li>
+  //             <li>Unlock answers to check your work</li>
+  //             <li>Get in-depth explanations</li>
+  //             <li>View all previous challenges</li>
+  //           </ul>
+  //           <p className="mt-8">
+  //             <span className="md:text-2xl text-xl font-medium white">
+  //               Sign Up With Google To View Today's Challenge
+  //             </span>
+  //           </p>
+  //           <Link href={{ pathname: `${payWall ? '/plans' : '/signin'}` }}>
+  //             <Button
+  //               variant="slim"
+  //               type="button"
+  //               className="mt-8 block w-full rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-zinc-900"
+  //             >
+  //               View Today's Challenge
+  //             </Button>
+  //           </Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">

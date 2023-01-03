@@ -3,6 +3,7 @@ import {
   User
 } from '@supabase/auth-helpers-nextjs';
 import { ProductWithPrice } from 'types';
+import { v4 as uuidv4 } from 'uuid';
 import type { Database } from 'types_db';
 
 export const supabase = createBrowserSupabaseClient<Database>();
@@ -34,3 +35,9 @@ export const updateUserName = async (user: User, name: string) => {
     })
     .eq('id', user.id);
 };
+export const addEmail = async (email: string) => {
+  await supabase
+  .from('emails')
+  .insert({ id: uuidv4(), email: email })
+};
+

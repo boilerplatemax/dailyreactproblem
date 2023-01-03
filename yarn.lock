@@ -489,6 +489,11 @@
   "resolved" "https://registry.npmjs.org/@types/unist/-/unist-2.0.6.tgz"
   "version" "2.0.6"
 
+"@types/uuid@^9.0.0":
+  "integrity" "sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q=="
+  "resolved" "https://registry.npmjs.org/@types/uuid/-/uuid-9.0.0.tgz"
+  "version" "9.0.0"
+
 "@uiw/react-textarea-code-editor@^1.4.4":
   "integrity" "sha512-rv49/x2eooTUfYMjHzFAWLXB31kfMCt4iGNFULgCeHrORfq/3L/ALV4RXaVxZhitOHzlkMFNRvXrlmDs+bdj1g=="
   "resolved" "https://registry.npmjs.org/@uiw/react-textarea-code-editor/-/react-textarea-code-editor-1.4.4.tgz"
@@ -2242,6 +2247,11 @@
   "integrity" "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8= sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   "version" "1.0.2"
+
+"uuid@^9.0.0":
+  "integrity" "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  "version" "9.0.0"
 
 "vfile-location@^4.0.0":
   "integrity" "sha512-JDxPlTbZrZCQXogGheBHjbRWjESSPEak770XwWPfw5mTc1v1nWGLB/apzZxsx8a0SJVfF8HK8ql8RD308vXRUw=="
