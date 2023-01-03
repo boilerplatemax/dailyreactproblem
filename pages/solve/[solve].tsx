@@ -59,7 +59,8 @@ function solve() {
     const email = e.target.email.value
 
     e.preventDefault()
-    if(email===undefined||'')return
+
+    if(!email)return
 
     setEmailProvided(true)
     addEmail(email)
