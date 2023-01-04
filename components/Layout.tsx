@@ -5,7 +5,7 @@ import Navbar from 'components/ui/Navbar';
 import Footer from 'components/ui/Footer';
 import { ReactNode } from 'react';
 import { PageMeta } from '../types';
-
+import og from 'public/og.png'
 interface Props {
   children: ReactNode;
   meta?: PageMeta;
@@ -16,7 +16,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
   const meta = {
     title: 'React Teacher',
     description: 'Improve By Solving Daily Coding Puzzles',
-    cardImage: '/og.png',
+    cardImage: {og},
     ...pageMeta
   };
 
@@ -41,6 +41,8 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.cardImage} />
+
+        
 
         <script
           async
