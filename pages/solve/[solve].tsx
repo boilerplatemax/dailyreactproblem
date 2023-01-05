@@ -31,13 +31,18 @@ function solve() {
   const id: any = router?.query?.solve;
   
   const [reveal, setReveal] = useState(false);
-  const [loaded, setLoaded] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const [emailProvided, setEmailProvided] = useState(false);
   const { user, isLoading, subscription } = useUser();
   const [ challenges,setChallenges ] = useState([]);
   useEffect(()=>{
+    
     setEmailProvided(localStorage.getItem("REACTTEACHER_EMAIL")!==null?true:false)
-    getChallenges().then(data => setChallenges(data));
+    getChallenges().then(data => {
+    setChallenges(data)
+    setLoaded(true)
+  }
+    );
   },[])
 
   useEffect(() => {
@@ -55,7 +60,8 @@ function solve() {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3">
-          This challenge can not be found.
+          {loaded?'This challenge can not be found.':'Loading...'}
+
         </h1>
       </div>
     );
