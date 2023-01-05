@@ -6,6 +6,7 @@ import s from './Navbar.module.css';
 import Logo from 'components/icons/Logo';
 import { useRouter } from 'next/router';
 import { useUser } from 'utils/useUser';
+import {usePayWall} from 'utils/useFeature'
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 
@@ -13,7 +14,7 @@ const Navbar = () => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
-
+  const payWall = usePayWall();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -41,9 +42,9 @@ const Navbar = () => {
               <Link href="/solve">
                 <a className={s.link}>Archives</a>
               </Link>
-              <Link href="/plans">
+              {payWall&&<Link href="/plans">
                 <a className={s.link}>Pricing</a>
-              </Link>
+              </Link>}
               {user && (
                 <Link href="/account">
                   <a className={s.link}>Account</a>

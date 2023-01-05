@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useUser } from 'utils/useUser';
 import { useDate } from 'utils/useDate';
 import { addEmail } from 'utils/supabase-client';
+import { getChallenges } from 'utils/supabase-client';
 import { usePayWall } from 'utils/useFeature';
 import { useNewsLetter } from 'utils/useFeature';
 import data from 'assets/data/data.json';
@@ -17,24 +18,28 @@ interface challenge {
   tipsFree: string;
   explanation: string;
   solution: string;
-  difficulty: number;
+  difficulty: string;
 }
 
 function solve() {
   const currentDate = useDate();
+
   const router = useRouter();
   const payWall = usePayWall();
   const newsLetter = useNewsLetter();
-
+  
   const id: any = router?.query?.solve;
-  const challenge: challenge = data[id-1];
+  
   const [reveal, setReveal] = useState(false);
   const [loaded, setLoaded] = useState(true);
   const [emailProvided, setEmailProvided] = useState(false);
   const { user, isLoading, subscription } = useUser();
+  const [ challenges,setChallenges ] = useState([]);
   useEffect(()=>{
     setEmailProvided(localStorage.getItem("REACTTEACHER_EMAIL")!==null?true:false)
+    getChallenges().then(data => setChallenges(data));
   },[])
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://cpwebassets.codepen.io/assets/embed/ei.js';
@@ -44,9 +49,9 @@ function solve() {
     return () => {
       document.body.removeChild(script);
     };
-  }, [reveal, id, emailProvided,'']);
-
-  if (!challenge||id==='0') {
+  }, [reveal, id, emailProvided,challenges,'']);
+  const challenge: any = challenges[id-1];
+  if (!challenge||id>currentDate+1) {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3">
@@ -146,6 +151,7 @@ function solve() {
   }
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
+      
       <div className="grid grid-cols-1 gap-x-12  animate-[fadeIn_1s_ease-in-out]">
         <div className="">
           <h1 className="text-3xl font-light text-white py-3">

@@ -35,6 +35,12 @@ export const updateUserName = async (user: User, name: string) => {
     })
     .eq('id', user.id);
 };
+
+export const getChallenges = async () => {
+  const { data, error } = await supabase.from('challenges').select();
+  return (data as any) || [];
+};
+
 export const addEmail = async (email: string) => {
   await supabase
   .from('emails')
