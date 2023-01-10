@@ -63,19 +63,19 @@ const home = (props: Props) => {
             </h2>
             <ul className="mb-8 text-lg font-light text-white">
               <li className="mb-2">
-                <i className="fas fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
+                <i className="fas inline fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
                 Access to all previous questions & solutions
               </li>
               <li className="mb-2">
-                <i className="fas fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
+                <i className="fas inline fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
                 Detailed explanations of each solution
               </li>
               <li className="mb-2">
-                <i className="fas fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
+                <i className="fas inline fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
                 Interactable code solutions in Codepen
               </li>
               <li className="mb-2">
-                <i className="fas fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
+                <i className="fas inline fa-check-circle mr-2 text-green-500 w-5 h-5"></i>{' '}
                 Get a month's worth of daily React challenges for the price of a
                 coffee!
               </li>
@@ -164,11 +164,11 @@ The component also has a div element with the class name "qr-holder". If the qrU
                         height="50"
                       />
                       <div className="flex items-center my-4">
-                        <i className="fas fa-star w-5 h-5 text-yellow-500 inline-block"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500 inline-block"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500 inline-block"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500 inline-block"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500 inline-block"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500 inline-block"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500 inline-block"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500 inline-block"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500 inline-block"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500 inline-block"></i>
                       </div>
                     </div>
                   </div>
@@ -196,11 +196,11 @@ The component also has a div element with the class name "qr-holder". If the qrU
                         height="50"
                       />
                       <div className="flex items-center my-4">
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
                       </div>
                     </div>
                   </div>
@@ -230,11 +230,11 @@ The component also has a div element with the class name "qr-holder". If the qrU
                         height="50"
                       />
                       <div className="flex items-center my-4">
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
-                        <i className="fas fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
+                        <i className="fas inline fa-star w-5 h-5 text-yellow-500"></i>
                       </div>
                     </div>
                   </div>

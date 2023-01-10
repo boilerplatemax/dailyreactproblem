@@ -8,7 +8,6 @@ import { addEmail } from 'utils/supabase-client';
 import { getChallenges } from 'utils/supabase-client';
 import { usePayWall } from 'utils/useFeature';
 import { useNewsLetter } from 'utils/useFeature';
-import data from 'assets/data/data.json';
 
 interface challenge {
   title: string;
@@ -55,8 +54,11 @@ function solve() {
       document.body.removeChild(script);
     };
   }, [reveal, id, emailProvided,challenges,'']);
-  const challenge: any = challenges[id-1];
-  if (!challenge||id>currentDate+1) {
+  const challenge: challenge = challenges[id-1];
+  if (!challenge
+    //uncomment to make challenges hidden before their assigned date
+    // ||id>currentDate+1
+    ) {
     return (
       <div className="2xl:px-48 py-3 px-4 min-h-screen">
         <h1 className="text-3xl font-light text-white py-3">
@@ -116,45 +118,45 @@ function solve() {
   //   );
   // }
 
-  if (!subscription && payWall && currentDate - 4 > id) {
-    return (
-      <div className="2xl:px-48 py-3 px-4 min-h-screen">
-        <h1 className="text-3xl font-light text-white py-3 mb-5">
-          Get premium to view past challenges.
-        </h1>
-        <div className="rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500 max-w-md">
-          <div className="p-6">
-            <h2 className="text-3xl font-extrabold white">
-              Want to improve your react skills?
-            </h2>
-            <ul className="mt-4 text-zinc-300">
-              <li>Make coding a routine</li>
-              <li>Unlock answers to check your work</li>
-              <li>Get in-depth explanations</li>
-              <li>View all previous challenges</li>
-            </ul>
-            <p className="mt-8">
-              <span className="text-3xl font-extrabold white">
-                Get a Free Trial
-              </span>
-              {/* <span className="text-base font-medium text-zinc-100 block">
-                First 7 days free!
-              </span> */}
-            </p>
-            <Link href={{ pathname: `/plans` }}>
-              <Button
-                variant="slim"
-                type="button"
-                className="mt-8 block w-full rounded-md py-2 text-sm font-light text-white text-center hover:bg-zinc-900"
-              >
-                Sign up
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (!user && payWall && currentDate - 4 > id) {
+  //   return (
+  //     <div className="2xl:px-48 py-3 px-4 min-h-screen">
+  //       <h1 className="text-3xl font-light text-white py-3 mb-5">
+  //         Get premium to view past challenges.
+  //       </h1>
+  //       <div className="rounded-lg shadow-sm divide-y divide-zinc-600 bg-zinc-900 border border-cyan-500 max-w-md">
+  //         <div className="p-6">
+  //           <h2 className="text-3xl font-extrabold white">
+  //             Want to improve your react skills?
+  //           </h2>
+  //           <ul className="mt-4 text-zinc-300">
+  //             <li>Make coding a routine</li>
+  //             <li>Unlock answers to check your work</li>
+  //             <li>Get in-depth explanations</li>
+  //             <li>View all previous challenges</li>
+  //           </ul>
+  //           <p className="mt-8">
+  //             <span className="text-3xl font-extrabold white">
+  //               Get a Free Trial
+  //             </span>
+  //             {/* <span className="text-base font-medium text-zinc-100 block">
+  //               First 7 days free!
+  //             </span> */}
+  //           </p>
+  //           <Link href={{ pathname: `/plans` }}>
+  //             <Button
+  //               variant="slim"
+  //               type="button"
+  //               className="mt-8 block w-full rounded-md py-2 text-sm font-light text-white text-center hover:bg-zinc-900"
+  //             >
+  //               Sign up
+  //             </Button>
+  //           </Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="2xl:px-48 py-3 px-4 min-h-screen">
       
@@ -209,7 +211,7 @@ function solve() {
               {reveal && (
                 <>
                   {/* change true to subscription to start chargin for service */}
-                  {(subscription && payWall) || (!payWall && emailProvided) ? (
+                  {(subscription && payWall) || (!payWall && emailProvided && newsLetter) ? (
                     <div className="py-12">
                       <h1 className="text-3xl font-light text-white py-3">
                         Explanation
