@@ -103,7 +103,7 @@ export default function Account({ user }: { user: User }) {
             ) : subscription ? (
               `${subscriptionPrice}/${subscription?.prices?.interval}`
             ) : (
-              <Link href="/">
+              <Link href="/plans">
                 <a>Choose your plan</a>
               </Link>
             )}
